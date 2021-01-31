@@ -2,7 +2,7 @@
 
 Important Notes:
 
-	- The contract is developed in Solidity v0.8.0 and should be complied in this version.
+- The contract is developed in Solidity v0.8.0 and should be complied in this version.
 
 	- Because to make easier to testing of the functions, the messages are set in revert
 	  function. So, it causes to increse gas limit. For this reason, the gas limit should be set as 5000000
