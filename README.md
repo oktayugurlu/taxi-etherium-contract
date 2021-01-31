@@ -1,4 +1,4 @@
-# taxi-etherium-contract
+# Taxi Invesment Partnership Etherium Contract
 
 ## -Constructor:
 Called by owner of the contract and sets the manager and other initial values for state variables
