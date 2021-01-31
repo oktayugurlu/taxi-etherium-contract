@@ -2,59 +2,83 @@
 This smart contract handles a common asset and distribution of income generated from this asset in certain time intervals. The common asset in this scenario is a taxi.
 A group of people who would like to  combine their holdings together to buy a car which will be used as a taxi and the profit will be shared
 among participants every month. However, one problem is that they have no trust in each other. The smart contract that will handle the transactions. The contract can run on Ethereum network. The contract includes some state variables and functions which you can see below:
-
-### -Constructor:
+## State Variables:
+### - Participants: 
+maximum of 9, each participant identified with an address and has a balance
+### - Manager: 
+a manager that is decided offline who creates the contract initially.
+### - Taxi Driver: 
+1 taxi driver and salary
+### - Car Dealer: 
+An identity to buy/sell car, also handles maintenance and tax
+### - Contract balance: 
+Current total money in the contract that has not been distributed
+### - Fixed expenses: 
+Every 6 months car needs to go to Car Dealer for maintenance and taxes needs to be
+paid, total amount for maintenance and tax is fixed and 10 Ether for every 6 months.
+### - Participation fee:
+An amount that participants needs to pay for entering the taxi business, it is fixed and
+100 Ether.
+### - Owned Car: 
+identified with a 32 digit number, CarID
+### - Proposed Car: 
+Car proposal proposed by the CarDealer, Holds {CarID, price, offer valid time and approval
+state } information.
+### - Proposed Repurchase: 
+Car repurchase proposal proposed by the CarDealer, Holds {CarID (the owned
+car id), price, offer valid time, and approval state} information.
+### - Constructor:
 Called by owner of the contract and sets the manager and other initial values for state variables
-## -Join function:
+### - Join function:
 Public, Called by participants, Participants needs to pay the participation fee set in the contract to be a
 member in the taxi investment
-## -SetCarDealer:
+### - SetCarDealer:
 Only Manager can call this function, Sets the CarDealer’s address
-## -CarProposeToBusiness:
+### - CarProposeToBusiness:
 Only CarDealer can call this, sets Proposed Car values, such as CarID, price, offer valid time and
 approval state (to 0)
-## -ApprovePurchaseCar:
+### - ApprovePurchaseCar:
 Participants can call this function, approves the Proposed Purchase with incrementing the approval
 state. Each participant can increment once.
-## -PurchaseCar:
+### - PurchaseCar:
 Only Manager can call this function, sends the CarDealer the price of the proposed car if the offer valid
 time is not passed yet and approval state is approved by more than half of the participants.
-## -RepurchaseCarPropose:
+### - RepurchaseCarPropose:
 Only CarDealer can call this, sets Proposed Purchase values, such as CarID, price, offer valid time and
 approval state (to 0)
-## -ApproveSellProposal:
+### - ApproveSellProposal:
 Participants can call this function, approves the Proposed Sell with incrementing the approval state.
 Each participant can increment once.
-## -Repurchasecar:
+### - Repurchasecar:
 Only CarDealer can call this function, sends the proposed car price to contract if the offer valid time is
 not passed yet and approval state is approved by more than half of the participants.
-## -ProposeDriver:
+### - ProposeDriver:
 Only Manager can call this function, sets driver address, and salary.
-## -ApproveDriver:
+### - ApproveDriver:
 Participants can call this function, approves the Proposed Driver with incrementing the approval state.
 Each participant can increment once.
-## -SetDriver:
+### - SetDriver:
 Only Manager can call this function, sets the Driver info if approval state is approved by more than half
 of the participants. Assume there is only 1 driver.
-## -FireDriver:
+### - FireDriver:
 Only Manager can call this function, gives the full month of salary to current driver’s account.
-## -PayTaxiCharge:
+### - PayTaxiCharge:
 Public, customers who use the taxi pays their ticket through this function. Charge is sent to contract.
 Takes no parameter. See slides 6 page 11.
-## -ReleaseSalary:
+### - ReleaseSalary:
 Only Manager can call this function, releases the salary of the Driver to his/her account monthly. Make
 sure Manager is not calling this function more than once in a month.
-## -GetSalary:
+### - GetSalary:
 Only Driver can call this function, if there is any money in Driver’s account, it will be send to his/her
 address
-## -PayCarExpenses:
+### - PayCarExpenses:
 Only Manager can call this function, sends the CarDealer the price of the expenses every 6 month.
 Make sure Manager is not calling this function more than once in the last 6 months.
-## -PayDividend:
+### - PayDividend:
 Only Manager can call this function, calculates the total profit after expenses and Driver salaries,
 calculates the profit per participant and releases this amount to participants in every 6 month. Make sure
 Manager is not calling this function more than once in the last 6 months.
-## -GetDividend:
+### - GetDividend:
 Only Participants can call this function, if there is any money in participants’ account, it will be send to
 his/her address
 ## Important Notes:
