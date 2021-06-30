@@ -1,4 +1,4 @@
-# Taxi Invesment Partnership Etherium Contract
+# Taxi Invesment Partnership Ethereum Contract
 This smart contract handles a common asset and distribution of income generated from this asset in certain time intervals. The common asset in this scenario is a taxi.
 A group of people who would like to  combine their holdings together to buy a car which will be used as a taxi and the profit will be shared
 among participants every month. However, one problem is that they have no trust in each other. The smart contract that will handle the transactions. The contract can run on Ethereum network. The contract includes some state variables and functions which you can see below:
